@@ -15,5 +15,5 @@ class Artist(models.Model):
     band = models.CharField(max_length=100)
     image = models.CharField(max_length=1000)
     wiki = models.CharField(max_length=1000)
-    pedals = models.ManyToManyField(Pedal)
+    pedals = models.ManyToManyField(Pedal, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
