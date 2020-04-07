@@ -8,14 +8,31 @@ export default class Updateform extends Component {
       name: this.props.artist.name,
       band: this.props.artist.band,
       image: this.props.artist.image,
-      wiki: this.props.artist.wiki
+      wiki: this.props.artist.wiki,
+      pedals: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleCheckChange = this.handleCheckChange.bind(this)
   }
   handleChange(e){
   this.setState({[e.target.id]: e.target.value})
 }
+handleCheckChange(e){
+  let form = document.getElementById('myform');
+      let chks = form.querySelectorAll('input[type="checkbox"]');
+      let checked = [];
+      for(let i = 0; i < chks.length; i++){
+          if(chks[i].checked){
+              checked.push(chks[i].value)
+          }
+          this.setState({
+            pedals: [...checked]
+          })
+      }
+      console.log(checked);
+      return checked;
+  }
 
  async handleSubmit(artist){
    try {
@@ -26,7 +43,8 @@ export default class Updateform extends Component {
          name: this.state.name,
          band: this.state.band,
          image: this.state.image,
-         wiki: this.state.wiki
+         wiki: this.state.wiki,
+         pedals: this.state.pedals
        }),
        headers: {
          'Content-Type': 'application/json'
@@ -41,6 +59,7 @@ export default class Updateform extends Component {
     copyArtists[foundArtist].band = data.band
     copyArtists[foundArtist].image = data.image
     copyArtists[foundArtist].wiki = data.wiki
+    copyArtists[foundArtist].pedals = data.pedals
     this.props.handleUpdate(copyArtists)
     this.props.toggleUpdateForm()
 
@@ -68,13 +87,13 @@ export default class Updateform extends Component {
 
 
           {
-            // this.props.artistsPedals.map((pedal, i) =>
-            // <div key={i}>
-            //   <label htmlFor={pedal[i]}>{pedal.model}</label>
-            //   <input id={`${pedal[i]}`}type="checkbox" value={pedal.id} onChange={this.handleCheckChange}/>
-            //
-            // </div>
-            // )
+            this.props.availablePedals.map((pedal, i) =>
+            <div key={i}>
+              <label htmlFor={pedal[i]}>{pedal.model}</label>
+              <input id={`${pedal[i]}`}type="checkbox" value={pedal.id} onChange={this.handleCheckChange}/>
+
+            </div>
+            )
           }
 
 

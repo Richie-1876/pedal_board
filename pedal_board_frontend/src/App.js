@@ -61,7 +61,7 @@ export default class App extends Component {
 
 handleAddArtist(artist){
   console.log(artist);
-  const copyArtists = [artist, ...this.state.artists]
+  const copyArtists = [...this.state.artists, artist]
   this.setState({
     artists: copyArtists
 
@@ -73,6 +73,7 @@ handleUpdate(artist){
   this.setState({
     artists: artist
   })
+  
 }
 
 //handle deleting artist
@@ -106,15 +107,16 @@ async deleteArtist(id) {
            : null
          }
       <div>
-
-      {
-        this.state.artists.map((artist, i) =>
-          <Artist key={i} artist={artist}
-            artists={this.state.artists}
-           deleteArtist={this.deleteArtist} availablePedals={this.state.availablePedals}
-          handleUpdate={this.handleUpdate}/>
-        )
-      }
+        <div className='artist-container'>
+        {
+          this.state.artists.map((artist, i) =>
+            <Artist key={i} artist={artist}
+              artists={this.state.artists}
+             deleteArtist={this.deleteArtist} availablePedals={this.state.availablePedals}
+            handleUpdate={this.handleUpdate}/>
+          )
+        }
+        </div>
       </div>
       </>
     )

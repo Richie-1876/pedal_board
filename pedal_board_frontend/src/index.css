@@ -1,13 +1,65 @@
+
+
+
 body {
-  margin: 0;
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+header > h1 {
+  font-family: 'Marck Script', cursive;
+  font-weight: bold;
+  font-size: 90px;
+  text-shadow: 2px 2px gold;
+}
+.artist-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+/* //////////////////// Artist Card //////////////////////////// */
+.card {
+  width: 300px;
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 2px;
+}
+.card-img-top{
+  height: 400px;
+}
+/* /////////////////////// Pedal section /////////////////////// */
+.pedal-group {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+.pedal-container{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+.pedal-image {
+  max-width: 100px;
+  max-height: 100px;
+}
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.show-hide{
+  cursor: pointer;
+
+}
+.show-hide : hover {
+  color: blue;
 }

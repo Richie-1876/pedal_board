@@ -5,6 +5,7 @@ export default class Artist extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      artist: this.props.artist,
       artistsPedals: [],
       toggleShowPedals: false,
       showUpdate: false
@@ -23,6 +24,7 @@ export default class Artist extends Component {
         pedalTemp.push(pedal)
       }
       })
+      console.log(pedalTemp);
     }
     this.setState({
       artistsPedals: [...pedalTemp]
@@ -44,12 +46,12 @@ export default class Artist extends Component {
   render () {
     return(
       <>
-      <div className="artist-container">
-        <img src={this.props.artist.image} alt="artist"/>
-        <h2>{this.props.artist.name}</h2>
-        <h3>Band: {this.props.artist.band}</h3>
+      <div className="card">
+        <img className="card-img-top"src={this.props.artist.image} alt="artist"/>
+        <h2 className="card-header">{this.props.artist.name}</h2>
+        <h3>{this.props.artist.band}</h3>
         <a href={this.props.artist.wiki} target='_blank'rel="noopener noreferrer">More Info</a>
-        <h3 onClick={()=>this.toggleShow()}>
+        <h3 className='show-hide'onClick={()=>this.toggleShow()}>
         {
           this.state.toggleShowPedals ? "Hide Pedal Board" : "Show Pedal Board"
         }
@@ -57,30 +59,37 @@ export default class Artist extends Component {
 
         {
           this.state.toggleShowPedals ?
-          <ul>
+          <div className='pedal-group'>
           {
-            this.state.artistsPedals.map((pedal, i) =>
-              <div className="pedal-container" key={i}>
-              <h3>Model: {pedal.model}</h3>
-              <h4>Brand: {pedal.brand}</h4>
-              <img src={pedal.image} alt='pedal'/>
+
+            this.state.artistsPedals.map((pedal) =>
+
+              <div className="pedal-container" >
+                <div>
+                  <h5>Model: {pedal.model}</h5>
+                  <h6>Brand: {pedal.brand}</h6>
+                </div>
+                <img className='pedal-image' src={pedal.image} alt='pedal'/>
 
               </div>
             )
 
           }
-          </ul>
+          </div>
           : null
         }
+        <div className="button-group">
         <button className="btn btn-warning"onClick={()=>{this.toggleUpdateForm()}}>UPDATE</button>
         <button className="btn btn-danger"onClick={()=> this.props.deleteArtist(this.props.artist.id)}>DELETE</button>
+        </div>
         {
                  this.state.showUpdate
                  ? <Updateform toggleUpdateForm={this.toggleUpdateForm}
                  artist={this.props.artist}
                  handleUpdate={this.props.handleUpdate}
                  artists={this.props.artists}
-                 artistsPedals={this.state.artistsPedals}/>
+                 artistsPedals={this.state.artistsPedals}
+                 availablePedals={this.props.availablePedals}/>
                  : null
         }
       </div>
