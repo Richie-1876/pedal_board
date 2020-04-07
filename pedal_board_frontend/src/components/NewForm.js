@@ -9,14 +9,40 @@ export default class NewForm extends Component{
       band: '',
       image: '',
       wiki: '',
-      pedals: []
+      availablePedals: [],
+      pedals: [{}]
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleCheckChange = this.handleCheckChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.getPedals = this.getPedals.bind(this)
   }
   handleChange(e){
   this.setState({[e.target.id]: e.target.value})
 }
+handleCheckChange(e){
+  let form = document.getElementById('myform');
+      let chks = form.querySelectorAll('input[type="checkbox"]');
+      let checked = [];
+      for(let i = 0; i < chks.length; i++){
+          if(chks[i].checked){
+              checked.push(chks[i].value)
+          }
+          this.setState({
+
+            pedals: [...checked]
+
+          })
+
+      }
+      console.log(checked);
+      return checked;
+
+
+
+
+  }
+
 async handleSubmit(e) {
   e.preventDefault()
   try {
@@ -47,10 +73,27 @@ async handleSubmit(e) {
     console.error(e)
   }
 }
+async getPedals(){
+  try {
+    let response = await fetch('http://localhost:8000/api/pedal')
+    let data = await response.json()
+    console.log(data);
+    this.setState({
+      availablePedals: data
+    })
+
+  } catch (e) {
+    console.error(e)
+  }
+}
+componentDidMount(){
+  this.getPedals()
+}
   render(){
     return(
       <>
-        <form onSubmit={this.handleSubmit}>
+
+        <form id='myform'onSubmit={this.handleSubmit}>
 
           <input type='text' id="name" placeholder="Name" onChange={this.handleChange}/>
 
@@ -59,6 +102,19 @@ async handleSubmit(e) {
           <input type='text' id="image" placeholder="Image URL" onChange={this.handleChange}/>
 
           <input type='text' id="wiki" placeholder="Wiki URL" onChange={this.handleChange}/>
+
+
+          {
+            this.state.availablePedals.map((pedal, i) =>
+            <div key={i}>
+              <label htmlFor={pedal[i]}>{pedal.model}</label>
+              <input id={`${pedal[i]}`}type="checkbox" value={pedal.id} onChange={this.handleCheckChange}/>
+
+            </div>
+            )
+          }
+
+
 
           <input type="submit"/>
 

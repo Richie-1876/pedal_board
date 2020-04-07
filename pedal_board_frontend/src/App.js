@@ -20,7 +20,7 @@ export default class App extends Component {
     try {
       let response = await fetch('http://localhost:8000/api/artist')
       let data = await response.json()
-      console.log(data);
+      // console.log(data);
       this.setState({
         artists: data
       })
@@ -44,7 +44,7 @@ handleAddArtist(artist){
 }
 async deleteArtist(id) {
   try {
-    let reponse = await fetch(`http://localhost:8000/api/artist/${id}`, {
+    let response = await fetch(`http://localhost:8000/api/artist/${id}`, {
       method: 'DELETE'
     })
     this.setState( prevState => {
