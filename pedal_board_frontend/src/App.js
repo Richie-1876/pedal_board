@@ -9,12 +9,14 @@ export default class App extends Component {
     this.state = {
       artists: [],
       pedals:[],
+      availablePedals: [],
       newArtist: false
     }
     this.getArtists = this.getArtists.bind(this)
     this.handleAddArtist = this.handleAddArtist.bind(this)
     this.toggleNewForm = this.toggleNewForm.bind(this)
     this.deleteArtist = this.deleteArtist.bind(this)
+    this.getPedals = this.getPedals.bind(this)
   }
   async getArtists(){
     try {
@@ -23,6 +25,19 @@ export default class App extends Component {
       // console.log(data);
       this.setState({
         artists: data
+      })
+
+    } catch (e) {
+      console.error(e)
+    }
+  }
+  async getPedals(){
+    try {
+      let response = await fetch('http://localhost:8000/api/pedal')
+      let data = await response.json()
+      console.log(data);
+      this.setState({
+        availablePedals: data
       })
 
     } catch (e) {
@@ -57,6 +72,7 @@ async deleteArtist(id) {
 }
   componentDidMount(){
     this.getArtists()
+    this.getPedals()
   }
   render() {
     return(
@@ -65,14 +81,14 @@ async deleteArtist(id) {
       <button className="btn btn-success"onClick={()=>{this.toggleNewForm()}}>Add new Artist</button>
         {
            this.state.newArtist
-           ? <NewForm handleAddArtist={this.handleAddArtist} toggleNewForm={this.toggleNewForm}/>
+           ? <NewForm availablePedals={this.state.availablePedals}handleAddArtist={this.handleAddArtist} toggleNewForm={this.toggleNewForm}/>
            : null
          }
       <div>
 
       {
         this.state.artists.map((artist, i) =>
-          <Artist key={i} artist={artist} deleteArtist={this.deleteArtist}/>
+          <Artist key={i} artist={artist} deleteArtist={this.deleteArtist} availablePedals={this.state.availablePedals}/>
         )
       }
       </div>

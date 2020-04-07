@@ -9,13 +9,12 @@ export default class NewForm extends Component{
       band: '',
       image: '',
       wiki: '',
-      availablePedals: [],
       pedals: [{}]
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleCheckChange = this.handleCheckChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.getPedals = this.getPedals.bind(this)
+
   }
   handleChange(e){
   this.setState({[e.target.id]: e.target.value})
@@ -73,22 +72,6 @@ async handleSubmit(e) {
     console.error(e)
   }
 }
-async getPedals(){
-  try {
-    let response = await fetch('http://localhost:8000/api/pedal')
-    let data = await response.json()
-    console.log(data);
-    this.setState({
-      availablePedals: data
-    })
-
-  } catch (e) {
-    console.error(e)
-  }
-}
-componentDidMount(){
-  this.getPedals()
-}
   render(){
     return(
       <>
@@ -105,7 +88,7 @@ componentDidMount(){
 
 
           {
-            this.state.availablePedals.map((pedal, i) =>
+            this.props.availablePedals.map((pedal, i) =>
             <div key={i}>
               <label htmlFor={pedal[i]}>{pedal.model}</label>
               <input id={`${pedal[i]}`}type="checkbox" value={pedal.id} onChange={this.handleCheckChange}/>
