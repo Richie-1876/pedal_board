@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
+import Updateform from './Updateform.js'
 
 export default class Artist extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      artistsPedals: []
+      artistsPedals: [],
+      toggleShowPedals: false,
+      showUpdate: false
     }
     this.getArtistsPedals = this.getArtistsPedals.bind(this)
+    this.toggleShow = this.toggleShow.bind(this)
+    this.toggleUpdateForm = this.toggleUpdateForm.bind(this)
   }
   getArtistsPedals(){
     let pedalTemp = []
@@ -25,6 +30,14 @@ export default class Artist extends Component {
 
 
   }
+  toggleShow(){
+    this.setState({toggleShowPedals: !this.state.toggleShowPedals})
+  }
+  toggleUpdateForm(){
+  this.setState({
+    showUpdate: !this.state.showUpdate
+  })
+}
   componentDidMount(){
     this.getArtistsPedals()
   }
@@ -36,21 +49,40 @@ export default class Artist extends Component {
         <h2>{this.props.artist.name}</h2>
         <h3>Band: {this.props.artist.band}</h3>
         <a href={this.props.artist.wiki} target='_blank'rel="noopener noreferrer">More Info</a>
-        <h3>Pedal Board</h3>
-        <ul>
+        <h3 onClick={()=>this.toggleShow()}>
         {
-          this.state.artistsPedals.map((pedal, i) =>
-            <div className="pedal-container" key={i}>
-            <h3>{pedal.model}</h3>
-            <h4>{pedal.brand}</h4>
-            <img src={pedal.image} alt='pedal'/>
-
-            </div>
-          )
-
+          this.state.toggleShowPedals ? "Hide Pedal Board" : "Show Pedal Board"
         }
-        </ul>
+        </h3>
+
+        {
+          this.state.toggleShowPedals ?
+          <ul>
+          {
+            this.state.artistsPedals.map((pedal, i) =>
+              <div className="pedal-container" key={i}>
+              <h3>Model: {pedal.model}</h3>
+              <h4>Brand: {pedal.brand}</h4>
+              <img src={pedal.image} alt='pedal'/>
+
+              </div>
+            )
+
+          }
+          </ul>
+          : null
+        }
+        <button className="btn btn-warning"onClick={()=>{this.toggleUpdateForm()}}>UPDATE</button>
         <button className="btn btn-danger"onClick={()=> this.props.deleteArtist(this.props.artist.id)}>DELETE</button>
+        {
+                 this.state.showUpdate
+                 ? <Updateform toggleUpdateForm={this.toggleUpdateForm}
+                 artist={this.props.artist}
+                 handleUpdate={this.props.handleUpdate}
+                 artists={this.props.artists}
+                 artistsPedals={this.state.artistsPedals}/>
+                 : null
+        }
       </div>
 
       </>

@@ -14,10 +14,13 @@ export default class App extends Component {
     }
     this.getArtists = this.getArtists.bind(this)
     this.handleAddArtist = this.handleAddArtist.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
     this.toggleNewForm = this.toggleNewForm.bind(this)
     this.deleteArtist = this.deleteArtist.bind(this)
     this.getPedals = this.getPedals.bind(this)
   }
+  //GET ARTISTS
+
   async getArtists(){
     try {
       let response = await fetch('http://localhost:8000/api/artist')
@@ -31,6 +34,8 @@ export default class App extends Component {
       console.error(e)
     }
   }
+
+  // GET PEDALS
   async getPedals(){
     try {
       let response = await fetch('http://localhost:8000/api/pedal')
@@ -44,11 +49,16 @@ export default class App extends Component {
       console.error(e)
     }
   }
+
+  // Toggle New Form
   toggleNewForm(){
   this.setState({
     newArtist: !this.state.newArtist
   })
 }
+
+// Handle adding a new artist
+
 handleAddArtist(artist){
   console.log(artist);
   const copyArtists = [artist, ...this.state.artists]
@@ -57,6 +67,15 @@ handleAddArtist(artist){
 
   })
 }
+
+//handle update ARTISTS
+handleUpdate(artist){
+  this.setState({
+    artists: artist
+  })
+}
+
+//handle deleting artist
 async deleteArtist(id) {
   try {
     let response = await fetch(`http://localhost:8000/api/artist/${id}`, {
@@ -70,6 +89,8 @@ async deleteArtist(id) {
     console.error(e)
   }
 }
+
+//Run on load/before render.
   componentDidMount(){
     this.getArtists()
     this.getPedals()
@@ -88,7 +109,10 @@ async deleteArtist(id) {
 
       {
         this.state.artists.map((artist, i) =>
-          <Artist key={i} artist={artist} deleteArtist={this.deleteArtist} availablePedals={this.state.availablePedals}/>
+          <Artist key={i} artist={artist}
+            artists={this.state.artists}
+           deleteArtist={this.deleteArtist} availablePedals={this.state.availablePedals}
+          handleUpdate={this.handleUpdate}/>
         )
       }
       </div>
