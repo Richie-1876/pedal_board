@@ -14,6 +14,10 @@ export default class Artist extends Component {
     this.toggleShow = this.toggleShow.bind(this)
     this.toggleUpdateForm = this.toggleUpdateForm.bind(this)
   }
+
+
+///////////////////////// Function to get associated pedals ////////////////
+//Get associated pedals
   getArtistsPedals(){
     let pedalTemp = []
     let pedals = this.props.artist.pedals
@@ -24,23 +28,33 @@ export default class Artist extends Component {
         pedalTemp.push(pedal)
       }
       })
-      console.log(pedalTemp);
+      // console.log(pedalTemp);
     }
     this.setState({
       artistsPedals: [...pedalTemp]
     })
   }
+
+//////////////////////// Toggle functions ///////////////////////////////////
+//toggle show associated pedals
   toggleShow(){
     this.setState({toggleShowPedals: !this.state.toggleShowPedals})
   }
+// toggle update artist form
   toggleUpdateForm(){
   this.setState({
     showUpdate: !this.state.showUpdate
   })
 }
+
+/////////////////////// Component Did Mount /////////////////////////////////
   componentDidMount(){
     this.getArtistsPedals()
   }
+
+
+
+/////////////////////// RENDER ///////////////////////////////////////////////
   render () {
     return(
       <>

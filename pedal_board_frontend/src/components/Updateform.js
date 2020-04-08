@@ -15,9 +15,14 @@ export default class Updateform extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleCheckChange = this.handleCheckChange.bind(this)
   }
+
+  //////////////////////////// HANDLE CHANGES ////////////////////////////////
+//text input changes
   handleChange(e){
   this.setState({[e.target.id]: e.target.value})
 }
+
+//checkbox changes
 handleCheckChange(e){
   let form = document.getElementById('myform');
       let chks = form.querySelectorAll('input[type="checkbox"]');
@@ -33,6 +38,9 @@ handleCheckChange(e){
       console.log(checked);
       return checked;
   }
+
+
+////////////////////////////// HANDLE SUBMIT /////////////////////////////////
 
  async handleSubmit(artist){
    try {
@@ -68,11 +76,15 @@ handleCheckChange(e){
      console.error(e)
    }
  }
+
+
+
+
+
+ //////////////////////////// RENDER /////////////////////////////////////////
   render() {
     return(
-
         <>
-
         <form id='myform'onSubmit={(e)=>{
         e.preventDefault()
         this.handleSubmit(this.props.artist)

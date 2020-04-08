@@ -22,9 +22,11 @@ export default class App extends Component {
     this.getPedals = this.getPedals.bind(this)
     this.toggleShowPedals = this.toggleShowPedals.bind(this)
     this.handleAddPedal = this.handleAddPedal.bind(this)
+    this.deletePedal = this.deletePedal.bind(this)
   }
-  //GET ARTISTS
 
+  ////////////////////// Get requests ///////////////////////////////////////
+  //GET ARTISTS
   async getArtists(){
     try {
       let response = await fetch('http://localhost:8000/api/artist')
@@ -38,13 +40,12 @@ export default class App extends Component {
       console.error(e)
     }
   }
-
   // GET PEDALS
   async getPedals(){
     try {
       let response = await fetch('http://localhost:8000/api/pedal')
       let data = await response.json()
-      console.log(data);
+      // console.log(data);
       this.setState({
         availablePedals: data
       })
@@ -54,20 +55,22 @@ export default class App extends Component {
     }
   }
 
-  // Toggle New Form
-  toggleNewForm(){
+ ///////////////////// Toggle functions ////////////////////////////////////
+// Toggle New Form
+toggleNewForm(){
   this.setState({
     newArtist: !this.state.newArtist
   })
 }
-
+//toggle show pedal list
 toggleShowPedals(){
   this.setState({
     showPedals: !this.state.showPedals
   })
 }
-// Handle adding a new artist
 
+///////////////////// Handle adds ///////////////////////////////////////////
+// Handle adding a new artist
 handleAddArtist(artist){
   console.log(artist);
   const copyArtists = [...this.state.artists, artist]
@@ -76,24 +79,25 @@ handleAddArtist(artist){
 
   })
 }
-
+// handle add pedal
 handleAddPedal(pedal){
   console.log(pedal);
   const copyPedals = [...this.state.availablePedals, pedal]
   this.setState({
     availablePedals: copyPedals
-
   })
 }
-//handle update ARTISTS
+
+//////////////////////////// handle updates ////////////////////////////////
+//handle update ARTIST
 handleUpdate(artist){
   this.setState({
-
     artists: artist
   })
  console.log(artist);
 }
 
+/////////////////////////// handle delete ///////////////////////////////////
 //handle deleting artist
 async deleteArtist(id) {
   try {
@@ -108,12 +112,29 @@ async deleteArtist(id) {
     console.error(e)
   }
 }
+//delete pedal
+async deletePedal(id) {
+  try {
+    let response = await fetch(`http://localhost:8000/api/pedal/${id}`, {
+      method: 'DELETE'
+    })
+    this.setState( prevState => {
+      const availablePedals = prevState.availablePedals.filter(pedal => pedal.id !== id)
+      return {availablePedals}
+    })
+  } catch (e) {
+    console.error(e)
+  }
+}
 
-//Run on load/before render.
+////////////////////////// Component Did Mount //////////////////////////////
+//Run on load/before render. Artists and pedals
   componentDidMount(){
     this.getArtists()
     this.getPedals()
   }
+
+//////////////////////// RENDER //////////////////////////////////////////////
   render() {
     return(
       <>
@@ -121,22 +142,29 @@ async deleteArtist(id) {
       <button id='add-new'className="btn btn-success"onClick={()=>{this.toggleNewForm()}}>Add new Artist</button>
         {
            this.state.newArtist
-           ? <NewForm availablePedals={this.state.availablePedals}handleAddArtist={this.handleAddArtist} toggleNewForm={this.toggleNewForm}/>
+           ? <NewForm
+           availablePedals={this.state.availablePedals}
+           handleAddArtist={this.handleAddArtist} toggleNewForm={this.toggleNewForm}/>
            : null
          }
          <h2 onClick={this.toggleShowPedals}>All Pedals</h2>
          {
            this.state.showPedals
-           ? <AllPedals handleAddPedal={this.handleAddPedal}availablePedals={this.state.availablePedals} />
+           ? <AllPedals
+           deletePedal={this.deletePedal}
+           handleAddPedal={this.handleAddPedal}
+           availablePedals={this.state.availablePedals} />
            :null
          }
       <div>
         <div className='artist-container'>
         {
           this.state.artists.map((artist, i) =>
-            <Artist key={i} artist={artist}
-              artists={this.state.artists}
-             deleteArtist={this.deleteArtist} availablePedals={this.state.availablePedals}
+            <Artist
+            key={i}
+            artist={artist}
+            artists={this.state.artists}
+            deleteArtist={this.deleteArtist} availablePedals={this.state.availablePedals}
             handleUpdate={this.handleUpdate}/>
           )
         }

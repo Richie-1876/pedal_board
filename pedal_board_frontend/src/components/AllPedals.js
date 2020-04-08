@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import NewPedal from './NewPedal.js'
+import Pedal from './Pedal.js'
 
 export default class AllPedals extends Component {
   constructor(props) {
@@ -9,11 +10,16 @@ export default class AllPedals extends Component {
     }
     this.toggleNewPedalForm = this.toggleNewPedalForm.bind(this)
   }
-  toggleNewPedalForm(){
+
+  ///////////////////////// Toggle form /////////////////////////////////////
+toggleNewPedalForm(){
   this.setState({
     newPedal: !this.state.newPedal
   })
 }
+
+
+/////////////////////////// RENDER ////////////////////////////////////////
   render(){
     return(
       <>
@@ -21,16 +27,10 @@ export default class AllPedals extends Component {
 
        {
          this.props.availablePedals.map((pedal, i) =>
-         <div key={i} className="card pedal" >
-           <div>
-             <h6>Model: {pedal.model}</h6>
-             <p>Brand: {pedal.brand}</p>
-           </div>
-           <img className='pedal-image' src={pedal.image} alt='pedal'/>
-
-
-
-         </div>
+         <Pedal
+         key={i}
+         pedal={pedal}
+         deletePedal={this.props.deletePedal} />
         )
        }
 

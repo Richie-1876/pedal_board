@@ -16,9 +16,13 @@ export default class NewForm extends Component{
     this.handleSubmit = this.handleSubmit.bind(this)
 
   }
+
+  //////////////////////// Handle changes ///////////////////////////////////
+//Text input changes
   handleChange(e){
   this.setState({[e.target.id]: e.target.value})
 }
+//checkbox changes
 handleCheckChange(e){
   let form = document.getElementById('myform');
       let chks = form.querySelectorAll('input[type="checkbox"]');
@@ -28,19 +32,15 @@ handleCheckChange(e){
               checked.push(chks[i].value)
           }
           this.setState({
-
             pedals: [...checked]
-
           })
-
       }
       console.log(checked);
       return checked;
-
-
-
-
   }
+
+
+  ///////////////////////// Handle Submit ///////////////////////////////////
 
 async handleSubmit(e) {
   e.preventDefault()
@@ -72,6 +72,14 @@ async handleSubmit(e) {
     console.error(e)
   }
 }
+
+
+
+
+
+
+
+/////////////////////////// RENDER /////////////////////////////////////////
   render(){
     return(
       <>
