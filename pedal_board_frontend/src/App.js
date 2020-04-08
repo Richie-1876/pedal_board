@@ -23,6 +23,7 @@ export default class App extends Component {
     this.toggleShowPedals = this.toggleShowPedals.bind(this)
     this.handleAddPedal = this.handleAddPedal.bind(this)
     this.deletePedal = this.deletePedal.bind(this)
+    this.updatePedal = this.updatePedal.bind(this)
   }
 
   ////////////////////// Get requests ///////////////////////////////////////
@@ -97,6 +98,13 @@ handleUpdate(artist){
  console.log(artist);
 }
 
+updatePedal(pedal) {
+  this.setState({
+    availablePedals: pedal
+  })
+  console.log(pedal);
+}
+
 /////////////////////////// handle delete ///////////////////////////////////
 //handle deleting artist
 async deleteArtist(id) {
@@ -153,7 +161,8 @@ async deletePedal(id) {
            ? <AllPedals
            deletePedal={this.deletePedal}
            handleAddPedal={this.handleAddPedal}
-           availablePedals={this.state.availablePedals} />
+           availablePedals={this.state.availablePedals}
+           updatePedal={this.updatePedal}/>
            :null
          }
       <div>

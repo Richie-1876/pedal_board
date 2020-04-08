@@ -2,13 +2,16 @@ import React, {Component} from 'react'
 import NewPedal from './NewPedal.js'
 import Pedal from './Pedal.js'
 
+
 export default class AllPedals extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      newPedal: false
+      newPedal: false,
+
     }
     this.toggleNewPedalForm = this.toggleNewPedalForm.bind(this)
+
   }
 
   ///////////////////////// Toggle form /////////////////////////////////////
@@ -30,7 +33,10 @@ toggleNewPedalForm(){
          <Pedal
          key={i}
          pedal={pedal}
-         deletePedal={this.props.deletePedal} />
+         deletePedal={this.props.deletePedal}
+         toggleUpdatePedalForm={this.toggleUpdatePedalForm}
+         updatePedal={this.props.updatePedal}
+         availablePedals={this.props.availablePedals}/>
         )
        }
 
@@ -41,6 +47,7 @@ toggleNewPedalForm(){
         <NewPedal handleAddPedal={this.props.handleAddPedal} toggleNewPedalForm={this.toggleNewPedalForm} />
         : null
       }
+
       </>
     )
   }
