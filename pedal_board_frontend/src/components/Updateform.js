@@ -62,6 +62,7 @@ handleCheckChange(e){
     copyArtists[foundArtist].pedals = data.pedals
     this.props.handleUpdate(copyArtists)
     this.props.toggleUpdateForm()
+    window.location.reload(false);
 
    } catch (e) {
      console.error(e)
@@ -98,7 +99,7 @@ handleCheckChange(e){
 
 
 
-          <input type="submit"/>
+          <input className="form-control btn btn-outline-success" type="submit"/>
 
         </form>
       </>

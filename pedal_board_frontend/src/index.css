@@ -21,6 +21,9 @@ header > h1 {
   font-size: 90px;
   text-shadow: 2px 2px gold;
 }
+#add-new {
+  margin-bottom: 20px;
+}
 .artist-container {
   display: flex;
   flex-direction: row;
@@ -35,6 +38,25 @@ header > h1 {
 }
 .card-img-top{
   height: 400px;
+}
+
+.pedal-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow-x: scroll;
+
+}
+.pedal {
+  margin-left: 5px;
+  margin-right: 5px;
+  min-width: 200px;
+  max-height: 200px;
+}
+.pedal > img {
+  align-items: center;
+  width: 100px;
+  height: 100px;
 }
 /* /////////////////////// Pedal section /////////////////////// */
 .pedal-group {

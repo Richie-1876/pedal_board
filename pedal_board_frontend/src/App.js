@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Artist from './components/Artist.js'
 import Header from './components/Header.js'
 import NewForm from './components/NewForm.js'
+import AllPedals from './components/AllPedals.js'
 
 export default class App extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class App extends Component {
     this.state = {
       artists: [],
       pedals:[],
+      showPedals: false,
       availablePedals: [],
       newArtist: false
     }
@@ -18,6 +20,8 @@ export default class App extends Component {
     this.toggleNewForm = this.toggleNewForm.bind(this)
     this.deleteArtist = this.deleteArtist.bind(this)
     this.getPedals = this.getPedals.bind(this)
+    this.toggleShowPedals = this.toggleShowPedals.bind(this)
+    this.handleAddPedal = this.handleAddPedal.bind(this)
   }
   //GET ARTISTS
 
@@ -57,6 +61,11 @@ export default class App extends Component {
   })
 }
 
+toggleShowPedals(){
+  this.setState({
+    showPedals: !this.state.showPedals
+  })
+}
 // Handle adding a new artist
 
 handleAddArtist(artist){
@@ -68,12 +77,21 @@ handleAddArtist(artist){
   })
 }
 
+handleAddPedal(pedal){
+  console.log(pedal);
+  const copyPedals = [...this.state.availablePedals, pedal]
+  this.setState({
+    availablePedals: copyPedals
+
+  })
+}
 //handle update ARTISTS
 handleUpdate(artist){
   this.setState({
+
     artists: artist
   })
-  
+ console.log(artist);
 }
 
 //handle deleting artist
@@ -100,11 +118,17 @@ async deleteArtist(id) {
     return(
       <>
       <Header />
-      <button className="btn btn-success"onClick={()=>{this.toggleNewForm()}}>Add new Artist</button>
+      <button id='add-new'className="btn btn-success"onClick={()=>{this.toggleNewForm()}}>Add new Artist</button>
         {
            this.state.newArtist
            ? <NewForm availablePedals={this.state.availablePedals}handleAddArtist={this.handleAddArtist} toggleNewForm={this.toggleNewForm}/>
            : null
+         }
+         <h2 onClick={this.toggleShowPedals}>All Pedals</h2>
+         {
+           this.state.showPedals
+           ? <AllPedals handleAddPedal={this.handleAddPedal}availablePedals={this.state.availablePedals} />
+           :null
          }
       <div>
         <div className='artist-container'>

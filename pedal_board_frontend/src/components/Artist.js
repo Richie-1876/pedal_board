@@ -29,8 +29,6 @@ export default class Artist extends Component {
     this.setState({
       artistsPedals: [...pedalTemp]
     })
-
-
   }
   toggleShow(){
     this.setState({toggleShowPedals: !this.state.toggleShowPedals})

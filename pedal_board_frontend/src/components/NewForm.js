@@ -99,7 +99,7 @@ async handleSubmit(e) {
 
 
 
-          <input type="submit"/>
+          <input className="form-control btn btn-outline-success" type="submit"/>
 
         </form>
       </>
