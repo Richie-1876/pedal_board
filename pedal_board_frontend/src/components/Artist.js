@@ -96,7 +96,9 @@ export default class Artist extends Component {
         </div>
         {
                  this.state.showUpdate
-                 ? <Updateform toggleUpdateForm={this.toggleUpdateForm}
+                 ? <Updateform
+                 baseURL={this.props.baseURL}
+                  toggleUpdateForm={this.toggleUpdateForm}
                  artist={this.props.artist}
                  handleUpdate={this.props.handleUpdate}
                  artists={this.props.artists}

@@ -29,6 +29,7 @@ header > h1 {
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+  background-image: url('https://png.clipart.me/previews/9e3/amp-cabinet-grill-592.gif');
 }
 /* //////////////////// Artist Card //////////////////////////// */
 .card {

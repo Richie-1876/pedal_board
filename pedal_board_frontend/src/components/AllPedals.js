@@ -31,6 +31,7 @@ toggleNewPedalForm(){
        {
          this.props.availablePedals.map((pedal, i) =>
          <Pedal
+         baseURL={this.props.baseURL}
          key={i}
          pedal={pedal}
          deletePedal={this.props.deletePedal}
@@ -44,7 +45,9 @@ toggleNewPedalForm(){
       <button id='add-new'className="btn btn-success"onClick={()=>{this.toggleNewPedalForm()}}>Add new Pedal</button>
       {
         this.state.newPedal ?
-        <NewPedal handleAddPedal={this.props.handleAddPedal} toggleNewPedalForm={this.toggleNewPedalForm} />
+        <NewPedal
+        baseURL={this.props.baseURL}
+         handleAddPedal={this.props.handleAddPedal} toggleNewPedalForm={this.toggleNewPedalForm} />
         : null
       }
 

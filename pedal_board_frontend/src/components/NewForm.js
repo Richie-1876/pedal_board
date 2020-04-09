@@ -45,7 +45,7 @@ handleCheckChange(e){
 async handleSubmit(e) {
   e.preventDefault()
   try {
-    let response = await fetch('http://localhost:8000/api/artist/', {
+    let response = await fetch(`${this.props.baseURL}/api/artist/`, {
       method: "POST",
       body: JSON.stringify({
         name: this.state.name,

@@ -18,7 +18,7 @@ export default class UpdatePedal extends Component {
 async handleSubmit(pedal) {
   console.log(pedal);
   try {
-    let response = await fetch(`http://localhost:8000/api/pedal/${pedal.id}/`, {
+    let response = await fetch(`${this.props.baseURL}/api/pedal/${pedal.id}/`, {
       method: 'PUT',
       body: JSON.stringify({
         model: this.state.model,

@@ -45,7 +45,7 @@ handleCheckChange(e){
  async handleSubmit(artist){
    try {
      console.log(artist.id);
-     let response = await fetch(`http://localhost:8000/api/artist/${artist.id}/`, {
+     let response = await fetch(`${this.props.baseURL}/api/artist/${artist.id}/`, {
        method: 'PUT',
        body: JSON.stringify({
          name: this.state.name,

@@ -17,7 +17,7 @@ export default class NewPedal extends Component {
 async handleSubmit(e) {
   e.preventDefault()
   try {
-    let response = await fetch('http://localhost:8000/api/pedal/', {
+    let response = await fetch(`${this.props.baseURL}/api/pedal/`, {
       method: "POST",
       body: JSON.stringify({
         model: this.state.model,

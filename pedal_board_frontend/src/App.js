@@ -4,6 +4,13 @@ import Header from './components/Header.js'
 import NewForm from './components/NewForm.js'
 import AllPedals from './components/AllPedals.js'
 
+let baseURL = ''
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:8000'
+} else {
+  baseURL = 'https://pedal-board.herokuapp.com/'
+}
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -30,9 +37,10 @@ export default class App extends Component {
   //GET ARTISTS
   async getArtists(){
     try {
-      let response = await fetch('http://localhost:8000/api/artist')
+      let response = await fetch(`${baseURL}/api/artist/`)
+      // console.log(response);
       let data = await response.json()
-      // console.log(data);
+      console.log(data);
       this.setState({
         artists: data
       })
@@ -44,7 +52,7 @@ export default class App extends Component {
   // GET PEDALS
   async getPedals(){
     try {
-      let response = await fetch('http://localhost:8000/api/pedal')
+      let response = await fetch(`${baseURL}/api/pedal/`)
       let data = await response.json()
       // console.log(data);
       this.setState({
@@ -109,9 +117,10 @@ updatePedal(pedal) {
 //handle deleting artist
 async deleteArtist(id) {
   try {
-    let response = await fetch(`http://localhost:8000/api/artist/${id}`, {
+    let response = await fetch(`${baseURL}/api/artist/${id}/`, {
       method: 'DELETE'
     })
+    console.log(response);
     this.setState( prevState => {
       const artists = prevState.artists.filter(artist => artist.id !== id)
       return {artists}
@@ -123,7 +132,7 @@ async deleteArtist(id) {
 //delete pedal
 async deletePedal(id) {
   try {
-    let response = await fetch(`http://localhost:8000/api/pedal/${id}`, {
+    let response = await fetch(`${baseURL}/api/pedal/${id}/`, {
       method: 'DELETE'
     })
     this.setState( prevState => {
@@ -151,6 +160,7 @@ async deletePedal(id) {
         {
            this.state.newArtist
            ? <NewForm
+           baseURL={baseURL}
            availablePedals={this.state.availablePedals}
            handleAddArtist={this.handleAddArtist} toggleNewForm={this.toggleNewForm}/>
            : null
@@ -159,6 +169,7 @@ async deletePedal(id) {
          {
            this.state.showPedals
            ? <AllPedals
+           baseURL={baseURL}
            deletePedal={this.deletePedal}
            handleAddPedal={this.handleAddPedal}
            availablePedals={this.state.availablePedals}
@@ -170,6 +181,7 @@ async deletePedal(id) {
         {
           this.state.artists.map((artist, i) =>
             <Artist
+            baseURL={baseURL}
             key={i}
             artist={artist}
             artists={this.state.artists}
