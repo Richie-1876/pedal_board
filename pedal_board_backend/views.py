@@ -21,3 +21,6 @@ class PedalListCreate(generics.ListCreateAPIView):
 class PedalRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pedal.objects.all()
     serializer_class = PedalSerializer
+
+
+

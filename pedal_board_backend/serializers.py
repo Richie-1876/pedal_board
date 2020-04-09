@@ -11,3 +11,5 @@ class PedalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pedal
         fields = ('id', 'model', 'brand', 'image', 'created_at')
+
+
