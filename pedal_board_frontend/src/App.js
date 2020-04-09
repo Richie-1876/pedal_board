@@ -9,7 +9,7 @@ let baseURL = ''
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:8000'
 } else {
-  baseURL = 'https://pedal-board.herokuapp.com/'
+  baseURL = 'https://pedal-board.herokuapp.com'
 }
 export default class App extends Component {
   constructor(props) {
