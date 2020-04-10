@@ -9,6 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  background-image: url('https://png.clipart.me/previews/9e3/amp-cabinet-grill-592.gif');
 }
 
 code {
@@ -20,7 +21,18 @@ header > h1 {
   font-weight: bold;
   font-size: 90px;
   text-shadow: 2px 2px gold;
+  background-color: rgba(240, 202,132, .8);
 }
+.all-pedals {
+  font-family: 'Marck Script', cursive;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px black;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+
 #add-new {
   margin-bottom: 20px;
 }
@@ -31,6 +43,7 @@ header > h1 {
   flex-wrap: wrap;
   background-image: url('https://png.clipart.me/previews/9e3/amp-cabinet-grill-592.gif');
 }
+
 /* //////////////////// Artist Card //////////////////////////// */
 .card {
   width: 300px;
@@ -46,6 +59,8 @@ header > h1 {
   flex-direction: row;
   justify-content: space-between;
   overflow-x: scroll;
+  background-color: inherit;
+  height: 350px;
 
 }
 .pedal {

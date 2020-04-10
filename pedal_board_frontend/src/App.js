@@ -167,7 +167,7 @@ async deletePedal(id) {
            handleAddArtist={this.handleAddArtist} toggleNewForm={this.toggleNewForm}/>
            : null
          }
-         <h2 onClick={this.toggleShowPedals}>All Pedals</h2>
+         <h2 className='all-pedals'onClick={this.toggleShowPedals}>All Pedals</h2>
          {
            this.state.showPedals
            ? <AllPedals

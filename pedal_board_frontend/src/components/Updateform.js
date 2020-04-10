@@ -9,7 +9,7 @@ export default class Updateform extends Component {
       band: this.props.artist.band,
       image: this.props.artist.image,
       wiki: this.props.artist.wiki,
-      pedals: []
+      pedals: this.props.artist.pedals
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
