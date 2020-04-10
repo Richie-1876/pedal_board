@@ -54,10 +54,12 @@ export default class App extends Component {
     try {
       let response = await fetch(`${baseURL}/api/pedal/`)
       let data = await response.json()
-      // console.log(data);
+      console.log(data);
       this.setState({
         availablePedals: data
       })
+      console.log(this.state.availablePedals);
+
 
     } catch (e) {
       console.error(e)

@@ -74,7 +74,7 @@ export default class Artist extends Component {
           <div className='pedal-group'>
           {
 
-            this.state.artistsPedals.map((pedal) =>
+            this.state.artist.pedals.map((pedal) =>
 
               <div className="pedal-container" >
                 <div>

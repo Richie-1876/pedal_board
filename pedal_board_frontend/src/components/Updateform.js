@@ -29,12 +29,14 @@ handleCheckChange(e){
       let checked = [];
       for(let i = 0; i < chks.length; i++){
           if(chks[i].checked){
-              checked.push(chks[i].value)
+              checked.push(JSON.parse(chks[i].value))
           }
           this.setState({
             pedals: [...checked]
           })
       }
+      console.log(chks);
+      console.log(JSON.stringify(checked));
       console.log(checked);
       return checked;
   }
@@ -52,7 +54,7 @@ handleCheckChange(e){
          band: this.state.band,
          image: this.state.image,
          wiki: this.state.wiki,
-         pedals: this.state.pedals
+         pedals: this.state.pedals.map(pedal => pedal.id)
        }),
        headers: {
          'Content-Type': 'application/json'
@@ -67,10 +69,10 @@ handleCheckChange(e){
     copyArtists[foundArtist].band = data.band
     copyArtists[foundArtist].image = data.image
     copyArtists[foundArtist].wiki = data.wiki
-    copyArtists[foundArtist].pedals = data.pedals
+    copyArtists[foundArtist].pedals = this.state.pedals
     this.props.handleUpdate(copyArtists)
     this.props.toggleUpdateForm()
-    window.location.reload(false);
+    // window.location.reload(false);
 
    } catch (e) {
      console.error(e)
@@ -102,8 +104,8 @@ handleCheckChange(e){
           {
             this.props.availablePedals.map((pedal, i) =>
             <div key={i}>
-              <label htmlFor={pedal[i]}>{pedal.model}</label>
-              <input id={`${pedal[i]}`}type="checkbox" value={pedal.id} onChange={this.handleCheckChange}/>
+              <label htmlFor={pedal}>{pedal.model}</label>
+              <input id={`${pedal}`}type="checkbox" value={JSON.stringify(pedal)} onChange={this.handleCheckChange}/>
 
             </div>
             )

@@ -9,7 +9,7 @@ export default class NewForm extends Component{
       band: '',
       image: '',
       wiki: '',
-      pedals: [{}]
+      pedals: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleCheckChange = this.handleCheckChange.bind(this)
