@@ -32,6 +32,7 @@ export default class Pedal extends Component {
         {
           this.state.showUpdatePedal
           ? <UpdatePedal
+          baseURL={this.props.baseURL}
           pedal={this.props.pedal} toggleUpdatePedalForm={this.toggleUpdatePedalForm}
           availablePedals={this.props.availablePedals}
           updatePedal={this.props.updatePedal}/>
