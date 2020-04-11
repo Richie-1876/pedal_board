@@ -51,11 +51,11 @@ async handleSubmit(pedal) {
         e.preventDefault()
         this.handleSubmit(this.props.pedal)}}>
 
-          <input type='text' id="model" value={this.state.model} onChange={this.handleChange}/>
+          <input className="form-control form-control-lg"type='text' id="model" value={this.state.model} onChange={this.handleChange}/>
 
-          <input type='text' id="brand" value={this.state.brand} onChange={this.handleChange}/>
+          <input className="form-control form-control-lg" type='text' id="brand" value={this.state.brand} onChange={this.handleChange}/>
 
-          <input type='text' id="image" value={this.state.image} onChange={this.handleChange}/>
+          <input className="form-control form-control-lg"type='text' id="image" value={this.state.image} onChange={this.handleChange}/>
 
           <input className="form-control btn btn-outline-success" type="submit"/>
 

@@ -37,7 +37,7 @@ async handleSubmit(e) {
         band: this.state.band,
         image: this.state.image,
         wiki: this.state.wiki,
-        
+
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -71,13 +71,13 @@ async handleSubmit(e) {
 
           <form id='myform'onSubmit={this.handleSubmit}>
 
-            <input type='text' id="name" placeholder="Name" onChange={this.handleChange}/>
+            <input className="form-control form-control-lg" type='text' id="name" placeholder="Name" onChange={this.handleChange}/>
 
-            <input type='text' id="band" placeholder="Band" onChange={this.handleChange}/>
+            <input className="form-control form-control-lg" type='text' id="band" placeholder="Band" onChange={this.handleChange}/>
 
-            <input type='text' id="image" placeholder="Image URL" onChange={this.handleChange}/>
+            <input className="form-control form-control-lg" type='text' id="image" placeholder="Image URL" onChange={this.handleChange}/>
 
-            <input type='text' id="wiki" placeholder="Wiki URL" onChange={this.handleChange}/>
+            <input className="form-control form-control-lg" type='text' id="wiki" placeholder="Wiki URL" onChange={this.handleChange}/>
 
 
             <input className="form-control btn btn-outline-success" type="submit"/>

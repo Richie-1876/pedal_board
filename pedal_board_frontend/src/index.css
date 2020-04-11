@@ -22,6 +22,8 @@ header > h1 {
   font-size: 90px;
   text-shadow: 2px 2px gold;
   background-color: rgba(240, 202,132, .8);
+  border-bottom: 3px solid gold;
+  box-shadow: 2px 2px 2px;
 }
 .all-pedals {
   font-family: 'Marck Script', cursive;
@@ -34,6 +36,20 @@ header > h1 {
 
 
 #add-new {
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
+}
+
+#myform {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+#pedalform {
+  max-width: 500px;
+  margin: 0 auto;
   margin-bottom: 20px;
 }
 .artist-container {
@@ -48,7 +64,7 @@ header > h1 {
 .card {
   width: 300px;
   margin-bottom: 20px;
-  box-shadow: 2px 2px 2px;
+  box-shadow: 4px 4px 4px grey;
 }
 .card-img-top{
   height: 400px;
@@ -60,7 +76,8 @@ header > h1 {
   justify-content: space-between;
   overflow-x: scroll;
   background-color: inherit;
-  height: 350px;
+  height: 385px;
+
 
 }
 .pedal {
@@ -70,12 +87,18 @@ header > h1 {
   max-height: 200px;
 }
 .pedal > img {
-  align-items: center;
+  margin: 0 auto;
   width: 100px;
   height: 100px;
+  margin-bottom: 10px;
 }
 /* /////////////////////// Pedal section /////////////////////// */
 .pedal-group {
+  border: 1px solid black;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 5px;
+  border-radius: 10px;
   max-height: 200px;
   overflow-y: scroll;
 }
@@ -83,7 +106,11 @@ header > h1 {
   display:flex;
   flex-direction: row;
   justify-content: space-between;
+  /* border-top: 1px solid black; */
   border-bottom: 1px solid black;
+  text-align: left;
+  padding-top: 5px;
+  padding-left: 5px;
 }
 .pedal-image {
   max-width: 100px;
@@ -93,8 +120,15 @@ header > h1 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-bottom: 10px;
 }
 .show-hide{
   cursor: pointer;
+
+}
+.checkboxlist {
+  height: 100px;
+  overflow-y: scroll;
+  text-align: left;
 
 }

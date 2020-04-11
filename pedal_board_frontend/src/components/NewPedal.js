@@ -45,12 +45,13 @@ async handleSubmit(e) {
     return(
       <form id='pedalform'onSubmit={this.handleSubmit}>
 
-        <input type='text' id="model" placeholder="Model" onChange={this.handleChange}/>
+        <input className="form-control form-control-lg"type='text' id="model" placeholder="Model" onChange={this.handleChange}/>
 
-        <input type='text' id="brand" placeholder="Brand" onChange={this.handleChange}/>
+        <input className="form-control form-control-lg"type='text' id="brand" placeholder="Brand" onChange={this.handleChange}/>
 
-        <input type='text' id="image" placeholder="Image URL" onChange={this.handleChange}/>
-<input className="form-control btn btn-outline-success" type="submit"/>
+        <input className="form-control form-control-lg"type='text' id="image" placeholder="Image URL" onChange={this.handleChange}/>
+
+        <input className="form-control btn btn-outline-success" type="submit"/>
 
       </form>
     )

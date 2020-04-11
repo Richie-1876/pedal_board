@@ -92,24 +92,26 @@ handleCheckChange(e){
         this.handleSubmit(this.props.artist)
       }}>
 
-          <input type='text' id="name" value={this.state.name} onChange={this.handleChange}/>
+          <input className="form-control form-control-lg" type='text' id="name" value={this.state.name} onChange={this.handleChange}/>
 
-          <input type='text' id="band" value={this.state.band} onChange={this.handleChange}/>
+          <input className="form-control form-control-lg" type='text' id="band" value={this.state.band} onChange={this.handleChange}/>
 
-          <input type='text' id="image" value={this.state.image} onChange={this.handleChange}/>
+          <input className="form-control form-control-lg" type='text' id="image" value={this.state.image} onChange={this.handleChange}/>
 
-          <input type='text' id="wiki" value={this.state.wiki} onChange={this.handleChange}/>
+          <input className="form-control form-control-lg" type='text' id="wiki" value={this.state.wiki} onChange={this.handleChange}/>
 
-
+          <div className='checkboxlist'>
           {
             this.props.availablePedals.map((pedal, i) =>
-            <div key={i}>
-              <label htmlFor={pedal}>{pedal.model}</label>
-              <input id={`${pedal}`}type="checkbox" value={JSON.stringify(pedal)} onChange={this.handleCheckChange}/>
+            <div className="form-check"key={i}>
+
+              <input className="form-check-input"  id={`${pedal}`}type="checkbox" value={JSON.stringify(pedal)} onChange={this.handleCheckChange}/>
+                <label class="form-check-label" htmlFor={pedal}>{pedal.model}</label>
 
             </div>
             )
           }
+          </div>
 
 
 

@@ -10,7 +10,7 @@ export default class Artist extends Component {
       toggleShowPedals: false,
       showUpdate: false
     }
-    this.getArtistsPedals = this.getArtistsPedals.bind(this)
+    // this.getArtistsPedals = this.getArtistsPedals.bind(this)
     this.toggleShow = this.toggleShow.bind(this)
     this.toggleUpdateForm = this.toggleUpdateForm.bind(this)
   }
@@ -18,22 +18,22 @@ export default class Artist extends Component {
 
 ///////////////////////// Function to get associated pedals ////////////////
 //Get associated pedals
-  getArtistsPedals(){
-    let pedalTemp = []
-    let pedals = this.props.artist.pedals
-    for (let i = 0; i < pedals.length; i++) {
-      this.props.availablePedals.map(pedal => {
-      if (pedal.id === pedals[i]) {
-
-        pedalTemp.push(pedal)
-      }
-      })
-      // console.log(pedalTemp);
-    }
-    this.setState({
-      artistsPedals: [...pedalTemp]
-    })
-  }
+  // getArtistsPedals(){
+  //   let pedalTemp = []
+  //   let pedals = this.props.artist.pedals
+  //   for (let i = 0; i < pedals.length; i++) {
+  //     this.props.availablePedals.map(pedal => {
+  //     if (pedal.id === pedals[i]) {
+  //
+  //       pedalTemp.push(pedal)
+  //     }
+  //     })
+  //     // console.log(pedalTemp);
+  //   }
+  //   this.setState({
+  //     artistsPedals: [...pedalTemp]
+  //   })
+  // }
 
 //////////////////////// Toggle functions ///////////////////////////////////
 //toggle show associated pedals
@@ -48,9 +48,9 @@ export default class Artist extends Component {
 }
 
 /////////////////////// Component Did Mount /////////////////////////////////
-  componentDidMount(){
-    this.getArtistsPedals()
-  }
+  // componentDidMount(){
+  //   this.getArtistsPedals()
+  // }
 
 
 
@@ -60,9 +60,9 @@ export default class Artist extends Component {
       <>
       <div className="card">
         <img className="card-img-top"src={this.props.artist.image} alt="artist"/>
-        <h2 className="card-header">{this.props.artist.name}</h2>
+        <h1 className="card-header">{this.props.artist.name}</h1>
         <h3>{this.props.artist.band}</h3>
-        <a href={this.props.artist.wiki} target='_blank'rel="noopener noreferrer">More Info</a>
+        <a href={this.props.artist.wiki} target='_blank'rel="noopener noreferrer"><h5>Learn More</h5></a>
         <h3 className='show-hide'onClick={()=>this.toggleShow()}>
         {
           this.state.toggleShowPedals ? "Hide Pedal Board" : "Show Pedal Board"
