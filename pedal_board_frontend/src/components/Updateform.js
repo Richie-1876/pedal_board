@@ -83,6 +83,7 @@ handleCheckChange(e){
 
 
 
+
  //////////////////////////// RENDER /////////////////////////////////////////
   render() {
     return(
@@ -102,14 +103,15 @@ handleCheckChange(e){
 
           <div className='checkboxlist'>
           {
-            this.props.availablePedals.map((pedal, i) =>
+            this.props.availablePedals.map((pedal, i) => 
+
             <div className="form-check"key={i}>
 
               <input className="form-check-input"  id={`${pedal}`}type="checkbox" value={JSON.stringify(pedal)} onChange={this.handleCheckChange}/>
-                <label class="form-check-label" htmlFor={pedal}>{pedal.model}</label>
+                <label className="form-check-label" htmlFor={pedal}>{pedal.model}</label>
 
             </div>
-            )
+          )
           }
           </div>
 
